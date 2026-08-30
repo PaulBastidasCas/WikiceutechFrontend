@@ -1,0 +1,296 @@
+html, body, #root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100vh;
+  background-color: #f6f6f6;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow: hidden; 
+}
+
+.auth-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto; 
+}
+
+/* ENCABEZADO AZUL CERÚLEO (HONDURAS) */
+.auth-header {
+  background-color: #005c7a; /* Tono más oscuro para contraste */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(0, 188, 228, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(0, 188, 228, 0.3) 0%, transparent 40%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.04) 10%, transparent 10%), 
+    radial-gradient(circle, rgba(255, 255, 255, 0.04) 10%, transparent 10%);
+  background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+  background-position: center, center, 0 0, 25px 25px;
+  color: white;
+  padding: 40px 20px 55px; 
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-bottom: 4px solid #00BCE4;
+}
+
+.auth-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.auth-header p {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* ÍCONO HONDURAS */
+.auth-overlap-icon {
+  display: flex;
+  justify-content: center;
+  margin-top: -28px;
+  position: relative;
+  z-index: 10;
+}
+
+.honduras-circle {
+  width: 56px;
+  height: 56px;
+  background-color: #ffffff;
+  border: 4px solid #00BCE4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.hn-stars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.star-row {
+  display: flex;
+  gap: 8px;
+}
+
+.star-row.middle {
+  margin: 0;
+}
+
+/* CUERPO CENTRAL */
+.auth-body {
+  background-color: #f6f6f6;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 20px;
+}
+
+.auth-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.auth-top-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: #333;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: #007b99;
+}
+
+.auth-content-centered {
+  width: 100%;
+}
+
+.auth-form-column h3 {
+  font-size: 1.1rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #000;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 12px; 
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.form-group label span {
+  color: #d60000;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  color: #333;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #00BCE4;
+  box-shadow: 0 0 0 1px #00BCE4;
+}
+
+/* Evitar fondo de autocompletado */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover, 
+.form-group input:-webkit-autofill:focus, 
+.form-group input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #333 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+}
+
+.forgot-password {
+  background: none;
+  border: none;
+  color: #007b99;
+  font-weight: bold;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 15px;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.terms-text {
+  font-size: 0.75rem;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.terms-text strong {
+  color: #007b99;
+  cursor: pointer;
+}
+
+.fandom-submit-btn {
+  width: 100%;
+  background-color: #005c7a;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.fandom-submit-btn:hover:not(:disabled) {
+  background-color: #00BCE4;
+}
+
+.fandom-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.85rem;
+}
+
+.auth-switch button {
+  background: none;
+  border: none;
+  color: #007b99;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.alert-message {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.alert-message.error {
+  background-color: #ffeaea;
+  color: #d60000;
+  border: 1px solid #d60000;
+}
+
+.alert-message.success {
+  background-color: #e8f9ff;
+  color: #007b99;
+  border: 1px solid #00BCE4;
+}
+
+.custom-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.custom-footer strong {
+  color: #000;
+}
