@@ -1,19 +1,24 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { loginUser, registerUser, verifyUser, recoverPassword } from '../services/authService';
 import { ArrowLeft, Eye, EyeOff, Star } from 'lucide-react';
 import '../styles/Auth.css';
 
 export default function Auth() {
   const navigate = useNavigate();
-  const [view, setView] = useState('login');
+  const location = useLocation();
+  
+  const [view, setView] = useState(location.state?.view || 'login');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [msg, setMsg] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
-    username: '', email: '', password: '', code: ''
+    username: '', 
+    email: location.state?.email || '', 
+    password: '', 
+    code: ''
   });
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });

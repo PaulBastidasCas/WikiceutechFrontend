@@ -21,4 +21,9 @@ export const recoverPassword = async (email) => {
     return response.data;
 };
 
+export const resetPassword = async (token, newPassword) => {
+    const response = await api.post('/auth/reset-password', { token, newPassword });
+    return response.data;
+};
+
 export const logoutUser = () => localStorage.removeItem('token');

@@ -50,19 +50,19 @@ export default function Layout() {
                     </button>
 
                     {(userRole === 'EDITOR' || userRole === 'CREATOR') && (
-                        <button className={`nav-item ${location.pathname === '/crear-articulo' ? 'active' : ''}`} onClick={() => alert('Crear artículo')}>
+                        <button className={`nav-item ${location.pathname === '/crear-articulo' ? 'active' : ''}`} onClick={() => navigate('/crear-articulo')}>
                             <PlusCircle size={22} /> <span>Crear Artículo</span>
                         </button>
                     )}
 
                     {(userRole === 'ADMIN' || userRole === 'ADMINISTRADOR') && (
-                        <button className={`nav-item ${location.pathname === '/usuarios' ? 'active' : ''}`} onClick={() => alert('Ver Usuarios')}>
+                        <button className={`nav-item ${location.pathname === '/usuarios' ? 'active' : ''}`} onClick={() => navigate('/usuarios')}>
                             <Shield size={22} /> <span>Ver Usuarios</span>
                         </button>
                     )}
 
                     {userRole && (
-                        <button className={`nav-item ${location.pathname === '/perfil' ? 'active' : ''}`} onClick={() => alert('Ir al perfil')}>
+                        <button className={`nav-item ${location.pathname === '/perfil' ? 'active' : ''}`} onClick={() => navigate('/perfil')}>
                             <User size={22} /> <span>Perfil</span>
                         </button>
                     )}
@@ -91,7 +91,6 @@ export default function Layout() {
                     </div>
                 </header>
 
-                {/* CONTENIDO CENTRAL */}
                 <Outlet />
             </main>
         </div>
