@@ -11,7 +11,7 @@ export default function Auth() {
   const [error, setError] = useState('');
   const [msg, setMsg] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     username: '', email: '', password: '', code: ''
   });
@@ -84,8 +84,8 @@ export default function Auth() {
       <div className="auth-body">
         <div className="auth-content-wrapper">
           <div className="auth-top-bar">
-            <button 
-              className="back-btn" 
+            <button
+              className="back-btn"
               onClick={() => view === 'login' ? navigate('/home') : setView('login')}
             >
               <ArrowLeft size={18} /> {view === 'login' ? 'ATRÁS' : 'VOLVER'}
@@ -95,11 +95,11 @@ export default function Auth() {
           <div className="auth-content-centered">
             <div className="auth-form-column">
               <h3>
-                {view === 'login' ? 'Iniciar sesión' : 
-                 view === 'register' ? 'Registrarse' : 
-                 view === 'verify' ? 'Verificación' : 'Recuperación'}
+                {view === 'login' ? 'Iniciar sesión' :
+                  view === 'register' ? 'Registrarse' :
+                    view === 'verify' ? 'Verificación' : 'Recuperación'}
               </h3>
-              
+
               {error && <div className="alert-message error">{error}</div>}
               {msg && <div className="alert-message success">{msg}</div>}
 
@@ -122,13 +122,13 @@ export default function Auth() {
                   <div className="form-group password-group">
                     <label>Contraseña <span>*</span></label>
                     <div className="password-input-wrapper">
-                      <input 
-                        type={showPassword ? "text" : "password"} 
-                        name="password" 
-                        placeholder="Contraseña" 
-                        required 
-                        onChange={handleChange} 
-                        value={formData.password} 
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        placeholder="Contraseña"
+                        required
+                        onChange={handleChange}
+                        value={formData.password}
                       />
                       <button type="button" className="toggle-pass" onClick={() => setShowPassword(!showPassword)}>
                         {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
@@ -173,9 +173,9 @@ export default function Auth() {
             </div>
           </div>
         </div>
-        
+
         <footer className="custom-footer">
-          Ingeniería en Software 
+          Ingeniería en Software
         </footer>
       </div>
     </div>
