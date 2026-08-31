@@ -1,4 +1,3 @@
-// src/javascript/Profile.jsx
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Mail, Shield, Calendar, Camera, Key } from 'lucide-react';
@@ -56,7 +55,7 @@ export default function Profile() {
         <div className="profile-header">
           <div className="avatar-wrapper">
             <img 
-              src={user.profilePictureUrl || "https://res.cloudinary.com/bejcylzm/image/upload/v1/default-avatar.png"} 
+              src={user.profilePictureUrl || `https://ui-avatars.com/api/?name=${user.userName}&background=00BCE4&color=fff`} 
               alt="Avatar" 
               className="profile-avatar" 
             />

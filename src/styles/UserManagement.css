@@ -1,0 +1,225 @@
+.management-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.management-card {
+    background: white;
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eaeaea;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+    min-width: 600px;
+}
+
+.users-table th,
+.users-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eaeaea;
+    white-space: nowrap;
+}
+
+.users-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+}
+
+.user-info-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: #222;
+}
+
+.user-info-cell img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.role-select {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.role-select option {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.status-badge.active {
+    background-color: #e6ffed;
+    color: #1e7e34;
+}
+
+.status-badge.inactive {
+    background-color: #ffeaea;
+    color: #d60000;
+}
+
+.actions-cell {
+    display: flex;
+    gap: 8px;
+}
+
+.action-icon-btn {
+    background: #f0f0f0;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.action-icon-btn.deactivate {
+    color: #d60000;
+}
+
+.action-icon-btn.deactivate:hover {
+    background-color: #ffeaea;
+}
+
+.action-icon-btn.activate {
+    color: #1e7e34;
+}
+
+.action-icon-btn.activate:hover {
+    background-color: #e6ffed;
+}
+
+.action-icon-btn.password {
+    color: #005c7a;
+}
+
+.action-icon-btn.password:hover {
+    background-color: #e8f9ff;
+}
+
+.management-msg {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.management-msg.success {
+    background: #e6ffed;
+    color: #1e7e34;
+}
+
+.management-msg.error {
+    background: #ffeaea;
+    color: #d60000;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #003b4f;
+    font-size: 1.1rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancel-btn,
+.save-btn {
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.cancel-btn {
+    background: #e2e8f0;
+    color: #333;
+}
+
+.save-btn {
+    background: #005c7a;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+@media (max-width: 768px) {
+    .management-container {
+        padding: 10px;
+    }
+
+    .management-card {
+        padding: 15px;
+    }
+
+    .management-header h2 {
+        font-size: 1.2rem;
+    }
+}

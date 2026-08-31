@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Auth from './javascript/Auth';
 import Home from './javascript/Home';
 import Profile from './javascript/Profile';
+import UserManagement from './javascript/UserManagement';
 import Layout from './components/Layout';
 import ResetPassword from './javascript/ResetPassword'; 
 
@@ -16,6 +17,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/perfil" element={<Profile />} />
+          <Route path="/usuarios" element={<UserManagement />} />
         </Route>
       </Routes>
     </BrowserRouter>
