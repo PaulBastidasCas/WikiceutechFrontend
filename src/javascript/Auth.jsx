@@ -180,7 +180,7 @@ export default function Auth() {
         </div>
 
         <footer className="custom-footer">
-          Ingeniería en Software
+          Software Engineering - +593 984743556
         </footer>
       </div>
     </div>

@@ -8,7 +8,7 @@ export default function Home() {
   const [articles, setArticles] = useState([]);
   const [selectedArticleId, setSelectedArticleId] = useState(null);
   const [fullArticle, setFullArticle] = useState(null);
-  const [loadedArticles, setLoadedArticles] = useState({}); // Estado para el caché
+  const [loadedArticles, setLoadedArticles] = useState({}); 
   const [isExpanded, setIsExpanded] = useState(false);
   const [showContents, setShowContents] = useState(false);
 

@@ -3,6 +3,7 @@ import Auth from './javascript/Auth';
 import Home from './javascript/Home';
 import Profile from './javascript/Profile';
 import UserManagement from './javascript/UserManagement';
+import CreateArticle from './javascript/CreateArticle'; 
 import Layout from './components/Layout';
 import ResetPassword from './javascript/ResetPassword'; 
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/perfil" element={<Profile />} />
           <Route path="/usuarios" element={<UserManagement />} />
+          <Route path="/crear-articulo" element={<CreateArticle />} /> 
         </Route>
       </Routes>
     </BrowserRouter>
