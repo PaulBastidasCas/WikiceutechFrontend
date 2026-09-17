@@ -1,16 +1,30 @@
 import { useState, useEffect } from 'react';
 import { getActiveArticles, downloadArticlePdf } from '../services/articleService';
 import api from '../services/api';
-import { Maximize, Minimize, List, Download, X } from 'lucide-react';
+import { Maximize, Minimize, List, Download, X, Moon, Sun } from 'lucide-react';
 import '../styles/Home.css';
 
 export default function Home() {
   const [articles, setArticles] = useState([]);
   const [selectedArticleId, setSelectedArticleId] = useState(null);
   const [fullArticle, setFullArticle] = useState(null);
-  const [loadedArticles, setLoadedArticles] = useState({}); 
+  const [loadedArticles, setLoadedArticles] = useState({});
   const [isExpanded, setIsExpanded] = useState(false);
   const [showContents, setShowContents] = useState(false);
+
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
 
   useEffect(() => {
     getActiveArticles()
@@ -104,9 +118,9 @@ export default function Home() {
               <div className="cards-container">
                 {featuredArticles.length > 0 ? (
                   featuredArticles.map((art, index) => {
-                    const coverImg = (fullArticle && fullArticle.id === art.id) 
-                                      ? fullArticle.coverImageUrl 
-                                      : art.coverImageUrl;
+                    const coverImg = (fullArticle && fullArticle.id === art.id)
+                      ? fullArticle.coverImageUrl
+                      : art.coverImageUrl;
 
                     return (
                       <div
@@ -116,9 +130,9 @@ export default function Home() {
                       >
                         <div className="card-image-placeholder">
                           {coverImg ? (
-                             <img src={coverImg} alt={art.title} className="card-cover-img" />
+                            <img src={coverImg} alt={art.title} className="card-cover-img" />
                           ) : (
-                             <div className="card-no-img"></div>
+                            <div className="card-no-img"></div>
                           )}
                         </div>
                         <div className="card-tag">
@@ -138,6 +152,14 @@ export default function Home() {
           <div className={`article-layout ${isExpanded ? 'expanded' : ''}`}>
             {fullArticle && (
               <div className="article-floating-sidebar">
+                <button
+                  className="float-btn"
+                  title="Alternar Modo Oscuro"
+                  onClick={() => setIsDarkMode(!isDarkMode)}
+                >
+                  {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
+
                 <button
                   className="float-btn"
                   title="Expandir / Contraer"

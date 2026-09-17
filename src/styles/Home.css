@@ -179,12 +179,46 @@
     opacity: 0.9;
 }
 
+.wiki-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
 .wiki-hero {
     background: linear-gradient(135deg, #003b4f, #008BAB);
     padding: 40px 30px;
     text-align: center;
     color: white;
     border-bottom: 4px solid #00BCE4;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.wiki-hero .theme-toggle {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    transition: all 0.2s ease;
+}
+
+.wiki-hero .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    border-color: #ffffff !important;
+}
+
+body.dark-mode .wiki-hero .theme-toggle {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    color: #00BCE4 !important;
+    border-color: #00BCE4 !important;
+}
+
+body.dark-mode .wiki-hero .theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.6) !important;
 }
 
 .hero-content h1 {
@@ -198,14 +232,6 @@
     opacity: 0.9;
 }
 
-.wiki-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
 .wiki-content-area {
     padding: 30px;
     max-width: 1200px;
@@ -213,7 +239,8 @@
     width: 100%;
     box-sizing: border-box;
     transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow-x: hidden;
+    overflow: visible !important; 
+    flex-shrink: 0; 
 }
 
 .wiki-content-area:has(.article-layout.expanded) {
@@ -629,11 +656,17 @@
     }
 
     .wiki-main {
-        margin-bottom: 60px;
+        padding-bottom: 90px;
+        margin-bottom: 0;
     }
 
     .wiki-content-area {
         padding: 15px;
+    }
+    
+    .article-layout {
+        flex-direction: column;
+        width: 100%;
     }
 
     .main-article {
@@ -650,7 +683,7 @@
     .article-section h2 {
         font-size: 1.2rem;
     }
-
+    
     .article-subsection h3 {
         font-size: 1.1rem;
     }
@@ -661,5 +694,24 @@
 
     .cards-container {
         grid-template-columns: 1fr;
+    }
+    
+    .article-floating-sidebar {
+        position: fixed;
+        top: auto;
+        bottom: 80px;
+        right: 15px;
+        left: auto;
+        flex-direction: column;
+        z-index: 90;
+    }
+
+    .contents-dropdown {
+        top: auto;
+        bottom: 0;
+        left: auto;
+        right: 60px;
+        width: 260px;
+        box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.3);
     }
 }

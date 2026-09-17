@@ -134,3 +134,110 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* =========================================
+   MODO OSCURO (GLOBAL OVERRIDES)
+   ========================================= */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .wiki-container,
+body.dark-mode .wiki-main {
+  background-color: #121212;
+}
+
+/* Tarjetas y contenedores principales */
+body.dark-mode .wiki-topbar,
+body.dark-mode .main-article,
+body.dark-mode .article-card,
+body.dark-mode .section-box,
+body.dark-mode .subsection-box,
+body.dark-mode .profile-card,
+body.dark-mode .management-card,
+body.dark-mode .modal-content {
+  background-color: #1e1e1e;
+  border-color: #333;
+  color: #e0e0e0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .wiki-topbar {
+  border-bottom-color: #333;
+}
+
+/* Textos y Títulos */
+body.dark-mode .topbar-brand h2,
+body.dark-mode .article-title,
+body.dark-mode .section-title,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode strong {
+  color: #ffffff;
+}
+
+body.dark-mode p,
+body.dark-mode .article-section p,
+body.dark-mode .article-subsection p {
+  color: #cccccc;
+}
+
+/* Buscador y Botones */
+body.dark-mode .topbar-search {
+  background-color: #2b2b2b;
+}
+
+body.dark-mode .topbar-search input {
+  color: #ffffff;
+}
+
+body.dark-mode .float-btn {
+  background-color: #2b2b2b;
+  color: #00BCE4;
+  border-color: #444;
+}
+
+body.dark-mode .float-btn:hover {
+  background-color: #3f3f3f;
+}
+
+.action-btn.theme-toggle {
+  background-color: transparent;
+  color: #003b4f;
+  border: 1px solid #ccc;
+}
+
+body.dark-mode .action-btn.theme-toggle {
+  background-color: transparent;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+body.dark-mode .action-btn.theme-toggle:hover {
+  background-color: #2b2b2b;
+}
+
+body.dark-mode .users-table th {
+  background-color: #2b2b2b;
+  color: #ffffff;
+}
+
+body.dark-mode .users-table td {
+  border-bottom-color: #333;
+}
+
+body.dark-mode .action-icon-btn {
+  background-color: #2b2b2b;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="password"],
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #2b2b2b;
+  color: #ffffff;
+  border-color: #444;
+}
