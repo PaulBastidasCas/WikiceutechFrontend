@@ -111,6 +111,8 @@
     font-size: 0.95rem;
     color: #333;
     font-weight: 500;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 
 .profile-actions {
@@ -157,4 +159,24 @@
 .profile-msg.error {
     background: #ffeaea;
     color: #d60000;
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 15px;
+    }
+
+    .profile-card {
+        padding: 20px 15px;
+    }
+
+    .detail-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .detail-icon {
+        margin-bottom: 5px;
+    }
 }

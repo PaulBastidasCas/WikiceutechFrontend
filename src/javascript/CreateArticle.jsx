@@ -11,6 +11,7 @@ export default function ArticleManager() {
     const [isActive, setIsActive] = useState(true);
     const [sections, setSections] = useState([]);
     const [uploading, setUploading] = useState(false);
+    const [expandedSections, setExpandedSections] = useState({});
 
     useEffect(() => {
         fetchArticles();
@@ -32,23 +33,29 @@ export default function ArticleManager() {
         setCoverImageUrl('');
         setIsActive(true);
         setSections([]);
+        setExpandedSections({});
     };
 
     const handleSelectArticle = async (art) => {
         try {
             const res = await api.get(`/articles/${art.id}`);
             const fullArt = res.data;
-            
+
             setSelectedArticleId(fullArt.id);
             setTitle(fullArt.title || '');
             setContent(fullArt.content || '');
             setCoverImageUrl(fullArt.coverImageUrl || '');
             setIsActive(fullArt.isActive ?? fullArt.active ?? fullArt.is_active ?? true);
             setSections(fullArt.sections || []);
+            setExpandedSections({}); 
         } catch (err) {
             console.error("Error al cargar detalles del artículo", err);
             alert("No se pudo cargar la información completa del artículo.");
         }
+    };
+
+    const toggleSection = (idx) => {
+        setExpandedSections(prev => ({ ...prev, [idx]: !prev[idx] }));
     };
 
     const uploadImageFile = async (file) => {
@@ -77,7 +84,9 @@ export default function ArticleManager() {
     };
 
     const addSection = () => {
+        const newIdx = sections.length;
         setSections([...sections, { name: '', description: '', imageUrl: '', subSections: [] }]);
+        setExpandedSections(prev => ({ ...prev, [newIdx]: true })); 
     };
 
     const removeSection = (index) => {
@@ -198,81 +207,89 @@ export default function ArticleManager() {
                     <h3>Secciones</h3>
                     {sections.map((sec, sIdx) => (
                         <div key={sIdx} className="section-box">
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                                <strong>Sección {sIdx + 1}</strong>
-                                <div>
-                                    <button type="button" onClick={() => moveSection(sIdx, -1)} disabled={sIdx === 0} style={{ marginRight: '5px' }}>↑ Subir</button>
-                                    <button type="button" onClick={() => moveSection(sIdx, 1)} disabled={sIdx === sections.length - 1} style={{ marginRight: '5px' }}>↓ Bajar</button>
-                                    <button type="button" onClick={() => removeSection(sIdx)} style={{ background: '#d9534f', color: 'white' }}>Eliminar</button>
+                            <div className="section-header-bar" onClick={() => toggleSection(sIdx)}>
+                                <strong>{sIdx + 1}. {sec.name || 'Nueva Sección'}</strong>
+                                <div className="section-actions" onClick={e => e.stopPropagation()}>
+                                    <button type="button" onClick={() => moveSection(sIdx, -1)} disabled={sIdx === 0}>↑ Subir</button>
+                                    <button type="button" onClick={() => moveSection(sIdx, 1)} disabled={sIdx === sections.length - 1}>↓ Bajar</button>
+                                    <button type="button" onClick={() => removeSection(sIdx)} className="btn-danger">X Eliminar</button>
+                                    <button type="button" onClick={() => toggleSection(sIdx)} className="btn-toggle">
+                                        {expandedSections[sIdx] ? '▲' : '▼'}
+                                    </button>
                                 </div>
                             </div>
 
-                            <input
-                                type="text" placeholder="Nombre de sección" value={sec.name}
-                                onChange={e => {
-                                    const upd = [...sections];
-                                    upd[sIdx].name = e.target.value;
-                                    setSections(upd);
-                                }}
-                            />
-                            <textarea
-                                placeholder="Descripción de sección" value={sec.description}
-                                onChange={e => {
-                                    const upd = [...sections];
-                                    upd[sIdx].description = e.target.value;
-                                    setSections(upd);
-                                }}
-                            />
-                            <input
-                                type="file" accept="image/*"
-                                onChange={async e => {
-                                    if (e.target.files[0]) {
-                                        const url = await uploadImageFile(e.target.files[0]);
-                                        const upd = [...sections];
-                                        upd[sIdx].imageUrl = url;
-                                        setSections(upd);
-                                    }
-                                }}
-                            />
+                            {/* Contenido Colapsable */}
+                            {expandedSections[sIdx] && (
+                                <div className="section-content-area">
+                                    <input
+                                        type="text" placeholder="Nombre de sección" value={sec.name}
+                                        onChange={e => {
+                                            const upd = [...sections];
+                                            upd[sIdx].name = e.target.value;
+                                            setSections(upd);
+                                        }}
+                                    />
+                                    <textarea
+                                        placeholder="Descripción de sección" value={sec.description}
+                                        onChange={e => {
+                                            const upd = [...sections];
+                                            upd[sIdx].description = e.target.value;
+                                            setSections(upd);
+                                        }}
+                                    />
+                                    <input
+                                        type="file" accept="image/*"
+                                        onChange={async e => {
+                                            if (e.target.files[0]) {
+                                                const url = await uploadImageFile(e.target.files[0]);
+                                                const upd = [...sections];
+                                                upd[sIdx].imageUrl = url;
+                                                setSections(upd);
+                                            }
+                                        }}
+                                    />
 
-                            <div className="subsections-container">
-                                <h4>Subsecciones</h4>
-                                {(sec.subSections || []).map((sub, subIdx) => (
-                                    <div key={subIdx} className="subsection-box">
-                                        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '5px' }}>
-                                            <button type="button" onClick={() => removeSubSection(sIdx, subIdx)} style={{ background: '#d9534f', color: 'white', padding: '4px 8px', fontSize: '0.8rem' }}>Quitar</button>
-                                        </div>
-                                        <input
-                                            type="text" placeholder="Nombre subsección" value={sub.name}
-                                            onChange={e => {
-                                                const upd = [...sections];
-                                                upd[sIdx].subSections[subIdx].name = e.target.value;
-                                                setSections(upd);
-                                            }}
-                                        />
-                                        <textarea
-                                            placeholder="Descripción subsección" value={sub.description}
-                                            onChange={e => {
-                                                const upd = [...sections];
-                                                upd[sIdx].subSections[subIdx].description = e.target.value;
-                                                setSections(upd);
-                                            }}
-                                        />
-                                        <input
-                                            type="file" accept="image/*"
-                                            onChange={async e => {
-                                                if (e.target.files[0]) {
-                                                    const url = await uploadImageFile(e.target.files[0]);
-                                                    const upd = [...sections];
-                                                    upd[sIdx].subSections[subIdx].imageUrl = url;
-                                                    setSections(upd);
-                                                }
-                                            }}
-                                        />
+                                    <div className="subsections-container">
+                                        <h4>Subsecciones</h4>
+                                        {(sec.subSections || []).map((sub, subIdx) => (
+                                            <div key={subIdx} className="subsection-box">
+                                                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '5px' }}>
+                                                    <button type="button" onClick={() => removeSubSection(sIdx, subIdx)} className="btn-danger-small">Quitar</button>
+                                                </div>
+                                                <input
+                                                    type="text" placeholder="Nombre subsección" value={sub.name}
+                                                    onChange={e => {
+                                                        const upd = [...sections];
+                                                        upd[sIdx].subSections[subIdx].name = e.target.value;
+                                                        setSections(upd);
+                                                    }}
+                                                />
+                                                <textarea
+                                                    placeholder="Descripción subsección" value={sub.description}
+                                                    onChange={e => {
+                                                        const upd = [...sections];
+                                                        upd[sIdx].subSections[subIdx].description = e.target.value;
+                                                        setSections(upd);
+                                                    }}
+                                                />
+                                                <input
+                                                    type="file" accept="image/*"
+                                                    onChange={async e => {
+                                                        if (e.target.files[0]) {
+                                                            const url = await uploadImageFile(e.target.files[0]);
+                                                            const upd = [...sections];
+                                                            upd[sIdx].subSections[subIdx].imageUrl = url;
+                                                            setSections(upd);
+                                                        }
+                                                    }}
+                                                />
+                                            </div>
+                                        ))}
+                                        <button type="button" onClick={() => addSubSection(sIdx)} style={{ marginTop: '10px' }}>+ Añadir Subsección</button>
                                     </div>
-                                ))}
-                                <button type="button" onClick={() => addSubSection(sIdx)} style={{ marginTop: '10px' }}>+ Añadir Subsección</button>
-                            </div>
+                                </div>
+                            )}
                         </div>
                     ))}
 

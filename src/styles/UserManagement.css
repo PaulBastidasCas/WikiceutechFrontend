@@ -17,6 +17,26 @@
     box-sizing: border-box;
 }
 
+.management-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.management-header h2 {
+    color: #003b4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+}
+
+.management-header p {
+    color: #666666;
+    margin: 0;
+}
+
 .table-responsive {
     width: 100%;
     overflow-x: auto;
@@ -35,13 +55,19 @@
 .users-table td {
     padding: 12px 10px;
     border-bottom: 1px solid #eaeaea;
-    white-space: nowrap;
 }
 
 .users-table th {
     background-color: #f8f9fa;
     color: #333;
     font-weight: bold;
+    white-space: nowrap;
+}
+
+.users-table td {
+    white-space: normal;
+    word-break: break-word;
+    min-width: 120px;
 }
 
 .user-info-cell {
@@ -221,5 +247,12 @@
 
     .management-header h2 {
         font-size: 1.2rem;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid #eaeaea;
+        border-radius: 4px;
     }
 }
